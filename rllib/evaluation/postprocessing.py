@@ -75,23 +75,23 @@ def Qadjust_nstep(n_step: int, gamma: float, batch: SampleBatch) -> None:
     # Shift NEXT_OBS and DONES.
     batch[SampleBatch.NEXT_OBS] = np.concatenate(
         [
-            batch[SampleBatch.OBS][n_step:],
-            np.stack([batch[SampleBatch.NEXT_OBS][-1]] * min(n_step, len_))
+            batch[SampleBatch.OBS][1:],
+            np.stack([batch[SampleBatch.NEXT_OBS][-1]] * min(1, len_))
         ],
         axis=0)
     batch[SampleBatch.DONES] = np.concatenate(
         [
-            batch[SampleBatch.DONES][n_step - 1:],
-            np.tile(batch[SampleBatch.DONES][-1], min(n_step - 1, len_))
+            batch[SampleBatch.DONES][1 - 1:],
+            np.tile(batch[SampleBatch.DONES][-1], min(1 - 1, len_))
         ],
         axis=0)
 
     # Change rewards in place.
     for i in range(len_):
-        for j in range(1, n_step):
+        for j in range(1, 2):
             if i + j < len_:
                 batch[SampleBatch.REWARDS][i] += \
-                    gamma**j * batch[SampleBatch.REWARDS][i + j]
+                    gamma**j * (0.5-1)**j * batch[SampleBatch.REWARDS][i + j]
                 
                 
 @DeveloperAPI
