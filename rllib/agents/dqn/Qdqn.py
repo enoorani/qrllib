@@ -124,7 +124,7 @@ def calculate_rr_weights(config: TrainerConfigDict) -> List[float]:
     return weights
 
 
-class DQNTrainer(SimpleQTrainer):
+class QDQNTrainer(SimpleQTrainer):
     @classmethod
     @override(SimpleQTrainer)
     def get_default_config(cls) -> TrainerConfigDict:
@@ -146,7 +146,7 @@ class DQNTrainer(SimpleQTrainer):
         if config["framework"] == "torch":
             return DQNTorchPolicy
         else:
-            return DQNTFPolicy
+            return QDQNTFPolicy
 
     @staticmethod
     @override(SimpleQTrainer)
