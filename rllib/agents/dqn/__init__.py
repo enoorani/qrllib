@@ -1,5 +1,6 @@
 from ray.rllib.agents.dqn.apex import ApexTrainer, APEX_DEFAULT_CONFIG
 from ray.rllib.agents.dqn.dqn import DQNTrainer, DEFAULT_CONFIG
+from ray.rllib.agents.dqn.Qdqn import QDQNTrainer, QDEFAULT_CONFIG
 from ray.rllib.agents.dqn.dqn_tf_policy import DQNTFPolicy
 from ray.rllib.agents.dqn.Qdqn_tf_policy import QDQNTFPolicy
 from ray.rllib.agents.dqn.dqn_torch_policy import DQNTorchPolicy
@@ -17,7 +18,9 @@ __all__ = [
     "QDQNTFPolicy"
     "DQNTorchPolicy",
     "DQNTrainer",
+    "QDQNTrainer",
     "DEFAULT_CONFIG",
+    "QDEFAULT_CONFIG",
     "R2D2TorchPolicy",
     "R2D2Trainer",
     "R2D2_DEFAULT_CONFIG",
