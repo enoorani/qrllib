@@ -128,7 +128,7 @@ class QDQNTrainer(SimpleQTrainer):
     @classmethod
     @override(SimpleQTrainer)
     def get_default_config(cls) -> TrainerConfigDict:
-        return DEFAULT_CONFIG
+        return QDEFAULT_CONFIG
 
     @override(SimpleQTrainer)
     def validate_config(self, config: TrainerConfigDict) -> None:
