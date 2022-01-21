@@ -8,7 +8,7 @@ import ray
 from ray.rllib.agents.dqn.distributional_q_tf_model import \
     DistributionalQTFModel
 from ray.rllib.agents.dqn.simple_q_tf_policy import TargetNetworkMixin
-from ray.rllib.evaluation.postprocessing import adjust_nstep
+from ray.rllib.evaluation.postprocessing import Qadjust_nstep
 from ray.rllib.models import ModelCatalog
 from ray.rllib.models.modelv2 import ModelV2
 from ray.rllib.models.tf.tf_action_dist import Categorical
@@ -390,7 +390,7 @@ def postprocess_nstep_and_prio(policy: Policy,
                                episode=None) -> SampleBatch:
     # N-step Q adjustments.
     if policy.config["n_step"] > 1:
-        adjust_nstep(policy.config["n_step"], policy.config["gamma"], batch)
+        Qadjust_nstep(policy.config["n_step"], policy.config["gamma"], batch)
 
     # Create dummy prio-weights (1.0) in case we don't have any in
     # the batch.
@@ -410,8 +410,8 @@ def postprocess_nstep_and_prio(policy: Policy,
     return batch
 
 
-DQNTFPolicy = build_tf_policy(
-    name="DQNTFPolicy",
+QDQNTFPolicy = build_tf_policy(
+    name="QDQNTFPolicy",
     get_default_config=lambda: ray.rllib.agents.dqn.dqn.DEFAULT_CONFIG,
     make_model=build_q_model,
     action_distribution_fn=get_distribution_inputs_and_class,
