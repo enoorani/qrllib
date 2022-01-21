@@ -12,7 +12,7 @@ https://docs.ray.io/en/master/rllib-algorithms.html#deep-q-networks-dqn-rainbow-
 import logging
 from typing import List, Optional, Type
 
-from ray.rllib.agents.dqn.dqn_tf_policy import DQNTFPolicy
+from ray.rllib.agents.dqn.dqn_tf_policy import QDQNTFPolicy
 from ray.rllib.agents.dqn.dqn_torch_policy import DQNTorchPolicy
 from ray.rllib.agents.dqn.simple_q import SimpleQTrainer, \
     DEFAULT_CONFIG as SIMPLEQ_DEFAULT_CONFIG
