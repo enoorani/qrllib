@@ -12,8 +12,8 @@ https://docs.ray.io/en/master/rllib-algorithms.html#deep-q-networks-dqn-rainbow-
 import logging
 from typing import List, Optional, Type
 
-from ray.rllib.agents.dqn.dqn_tf_policy import QDQNTFPolicy
-from ray.rllib.agents.dqn.dqn_torch_policy import DQNTorchPolicy
+from ray.rllib.agents.dqn.Qdqn_tf_policy import QDQNTFPolicy
+from ray.rllib.agents.dqn.Qdqn_torch_policy import DQNTorchPolicy
 from ray.rllib.agents.dqn.simple_q import SimpleQTrainer, \
     DEFAULT_CONFIG as SIMPLEQ_DEFAULT_CONFIG
 from ray.rllib.agents.trainer import Trainer
@@ -35,7 +35,7 @@ logger = logging.getLogger(__name__)
 
 # yapf: disable
 # __sphinx_doc_begin__
-DEFAULT_CONFIG = Trainer.merge_trainer_configs(
+QDEFAULT_CONFIG = Trainer.merge_trainer_configs(
     SIMPLEQ_DEFAULT_CONFIG,
     {
         # === Model ===
@@ -231,6 +231,6 @@ class QDQNTrainer(SimpleQTrainer):
 @Deprecated(
     new="Sub-class directly from `DQNTrainer` and override its methods",
     error=False)
-class GenericOffPolicyTrainer(DQNTrainer):
+class GenericOffPolicyTrainer(QDQNTrainer):
     pass
     
