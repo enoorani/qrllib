@@ -66,7 +66,7 @@ def adjust_nstep(n_step: int, gamma: float, batch: SampleBatch) -> None:
                     gamma**j * batch[SampleBatch.REWARDS][i + j]
 
 
-def Qadjust_nstep(n_step: int, gamma: float, batch: SampleBatch) -> None:
+def Qadjust_nstep(n_step: int, gamma: float, bias: float, batch: SampleBatch) -> None:
     assert not any(batch[SampleBatch.DONES][:-1]), \
         "Unexpected done in middle of trajectory!"
 
@@ -91,7 +91,7 @@ def Qadjust_nstep(n_step: int, gamma: float, batch: SampleBatch) -> None:
         for j in range(1, 2):
             if i + j < len_:
                 batch[SampleBatch.REWARDS][i] += \
-                    gamma**j * (0.5-1)**j * batch[SampleBatch.REWARDS][i + j]
+                    gamma**j * (bias-1)**j * batch[SampleBatch.REWARDS][i + j]
                 
                 
 @DeveloperAPI
