@@ -81,8 +81,8 @@ def Qadjust_nstep(n_step: int, gamma: float, bias: float, batch: SampleBatch) ->
         axis=0)
     batch[SampleBatch.DONES] = np.concatenate(
         [
-            batch[SampleBatch.DONES][1 - 1:],
-            np.tile(batch[SampleBatch.DONES][-1], min(1 - 1, len_))
+            batch[SampleBatch.DONES][0:],
+            np.tile(batch[SampleBatch.DONES][-1], min(0, len_))
         ],
         axis=0)
 
