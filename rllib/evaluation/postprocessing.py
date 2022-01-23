@@ -88,10 +88,8 @@ def Qadjust_nstep(n_step: int, gamma: float, bias: float, batch: SampleBatch) ->
 
     # Change rewards in place.
     for i in range(len_):
-        for j in range(1, 2):
-            if i + j < len_:
-                batch[SampleBatch.REWARDS][i] += \
-                    gamma**j * (bias-1)**j * batch[SampleBatch.REWARDS][i + j]
+        if i + 1 < len_:
+            batch[SampleBatch.REWARDS][i] = batch[SampleBatch.REWARDS][i] + (bias-1) * batch[SampleBatch.REWARDS][i]
                 
                 
 @DeveloperAPI
