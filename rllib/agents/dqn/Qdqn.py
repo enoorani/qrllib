@@ -42,6 +42,7 @@ QDEFAULT_CONFIG = Trainer.merge_trainer_configs(
         # Number of atoms for representing the distribution of return. When
         # this is greater than 1, distributional Q-learning is used.
         # the discrete supports are bounded by v_min and v_max
+        "bias": 1,
         "num_atoms": 1,
         "v_min": -10.0,
         "v_max": 10.0,
