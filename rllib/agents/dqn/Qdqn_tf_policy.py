@@ -390,7 +390,7 @@ def postprocess_nstep_and_prio(policy: Policy,
                                episode=None) -> SampleBatch:
     # N-step Q adjustments.
     if policy.config["n_step"] > 1:
-        Qadjust_nstep(policy.config["n_step"], policy.config["gamma"], batch)
+        Qadjust_nstep(policy.config["n_step"], policy.config["gamma"], policy.config["bias"], batch)
 
     # Create dummy prio-weights (1.0) in case we don't have any in
     # the batch.
